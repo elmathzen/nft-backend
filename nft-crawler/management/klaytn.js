@@ -7,9 +7,8 @@ const models = require('./models');
 
 const marketAbi = require('./abis/market.json');
 
-async function subscribe(caver) {
-    let web3 = new Web3(process.env.KLAYTN_WS_NODE);
-    const toBlock = await web3.eth.getBlockNumber();
+async function subscribe(web3) {
+    // const toBlock = await web3.eth.getBlockNumber();
     const klayMarketContract = new web3.eth.Contract(marketAbi, klayMarket);
 
     // await klayMarketContract.getPastEvents('allEvents', {fromBlock: 78419785, toBlock: toBlock})
