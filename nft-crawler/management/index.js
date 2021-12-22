@@ -1,5 +1,5 @@
 import path from 'path';
-import {checkKlaytnBridge, listenKlaytn} from "./klaytn2";
+import {checkKlaytnBridge, listenKlaytn} from "./klaytn";
 
 process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 if (process.env.NODE_ENV === 'production') {

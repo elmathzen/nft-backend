@@ -73,7 +73,7 @@ export async function listenKlaytn() {
     }, 10000);
 }
 
-export async function checkKlaytnBridge() {
+export async function checkKlaytnMarket() {
     let web3 = new Web3(process.env.KLAYTN_NODE);
     const toBlock = await web3.eth.getBlockNumber();
     const klayMarketContract = new web3.eth.Contract(marketAbi, klayMarket);
