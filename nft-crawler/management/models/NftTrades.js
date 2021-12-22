@@ -1,85 +1,73 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  const SendHistory = sequelize.define('SendHistory', {
-    txHash: {
-      type: Sequelize.DataTypes.STRING,
-      allowNull: false,
+  const NftTrades = sequelize.define('NftTrades', {
+    id: {
+      type: Sequelize.DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true
     },
-    blockNumber: {
-      type: Sequelize.DataTypes.BIGINT,
-      allowNull: false
-    },
-    xTxHash: {
+    nft: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    from: {
+    tokenId: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    to: {
+    seller: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    token: {
+    price: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    amount: {
-      type: Sequelize.DataTypes.DOUBLE,
+    onSale: {
+      type: Sequelize.DataTypes.BOOLEAN,
       allowNull: true
     },
-    formattedAmount: {
-      type: Sequelize.DataTypes.DOUBLE,
-      allowNull: true
-    },
-    fromChain: {
+    buyer: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    toChain: {
+    txHash1: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    xFrom: {
+    txHash2: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    xTo: {
+    txHash3: {
       type: Sequelize.DataTypes.STRING,
       allowNull: true
     },
-    xToken: {
-      type: Sequelize.DataTypes.STRING,
-      allowNull: true
-    },
-    xAmount: {
-      type: Sequelize.DataTypes.DOUBLE,
-      allowNull: true
-    },
-    formattedXAmount: {
-      type: Sequelize.DataTypes.DOUBLE,
-      allowNull: true
-    },
-    status: {
-      type: Sequelize.DataTypes.TINYINT,
-      allowNull: true
-    }
   }, {
     sequelize,
-    tableName: 'SendHistory',
+    tableName: 'NftTrades',
     timestamps: true
   });
 
-  SendHistory.findByTxHash = async function (txHash) {
+  NftTrades.findByTxHash = async function (txHash) {
     return await this.findOne({
       where: {
-        txHash: txHash
+        $or: [
+          { txHash1: txHash },
+          { txHash2: txHash },
+          { txHash3: txHash },
+        ]
       }
     });
   };
-  SendHistory.save = async function () {
+  NftTrades.findToken = async function (nft, tokenId) {
+    return await this.findOne({
+      where: {
+        nft: nft,
+        tokenId: tokenId
+      }
+    });
+  };
+  NftTrades.save = async function () {
     if (this.isNewRecord){
       console.log('create', this);
       return await this.create(this);
@@ -89,5 +77,5 @@ module.exports = function(sequelize, DataTypes) {
       return await this.update(this);
     }
   };
-  return SendHistory;
+  return NftTrades;
 };

@@ -12,8 +12,8 @@ export function convertTokenToDecimal(tokenAmount, exchangeDecimals) {
     return amount.div(dec);
 }
 
-export async function getFormattedAmount(tokenAddress, tokenAmount, isETH) {
-    const decimal = await fetchTokenDecimals(tokenAddress, isETH);
+export async function getFormattedAmount(tokenAmount) {
+    const decimal = 18;
     const formattedAmount = convertTokenToDecimal(tokenAmount, decimal);
 
     return formattedAmount.toNumber();

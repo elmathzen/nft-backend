@@ -38,7 +38,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.LastBlock = require('../models/LastBlock')(sequelize, Sequelize.DataTypes);
-db.SendHistory = require('../models/SendHistory')(sequelize, Sequelize.DataTypes);
-db.Error = require('../models/Error')(sequelize, Sequelize.DataTypes);
+db.NftTrades = require('./NftTrades')(sequelize, Sequelize.DataTypes);
 
 module.exports = db;

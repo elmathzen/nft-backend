@@ -1,6 +1,5 @@
 import path from 'path';
 import {checkKlaytnBridge, listenKlaytn} from "./klaytn2";
-import {listenEth} from "./ethereum2";
 
 process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 if (process.env.NODE_ENV === 'production') {
@@ -11,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 
 function main() {
     listenKlaytn();
-    listenEth();
+    // listenEth();
     // checkKlaytnBridge();
     // setInterval(async () => {
     //     checkKlaytnBridge();

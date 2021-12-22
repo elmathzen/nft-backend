@@ -8,7 +8,7 @@ export const ethBridge =    '0x16e3Ed1d321C35cB711fa35b6E557E2AA3647cc9';
 export const klayAddr =     '0xf223e26b018ae1917e84dd73b515620e36a75596';
 // export const klayRouter =   '0xF532e0589D477DB6D36591612B0ee42D038019C2';
 export const ktalAddr =     '0x6C27d9F6C4067212797794CD931596C2917F7Bf7';
-export const klayBridge =   '0xc7783434a22e6EE06404e0eA73B032f414523C81';
+export const klayMarket =   '0xfa9842DB010c8C39462386EB5e450327e92408eB';
 
 // // Mainnet
 // export const ethAddr =      '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
@@ -20,4 +20,4 @@ export const klayBridge =   '0xc7783434a22e6EE06404e0eA73B032f414523C81';
 // export const klayAddr =     '0x67FD18Cc70A7f8C26508c59c906B39B2A079866d';
 // export const klayRouter =   '0x913Cf96B805221E1631de21CD22B7a93099C00B7';
 // export const ktalAddr =     '0x90a4A420732907b3c38B11058F9aA02B3f4121dF';
-// export const klayBridge =   '0xd5849636C092a1aD3A852750D84868a2aD18D85b';
+// export const klayMarket =   '0xd5849636C092a1aD3A852750D84868a2aD18D85b';
