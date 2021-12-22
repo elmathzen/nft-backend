@@ -12,7 +12,6 @@ import bodyParser from 'koa-bodyparser';
 const { PORT } = process.env;
 
 import api from './api';
-import bridge from './bridge';
 
 const morgan = require('koa-morgan');
 // const models = require("./models/index.js");
@@ -37,7 +36,7 @@ function verifyOrigin ( ctx ) {
 function originIsValid ( origin ) {
   return validOrigins.indexOf( origin ) != -1;
 }
-const validOrigins = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://beta.taalswap.finance', 'https://swapbeta.taalswap.finance', 'https://taalswap.finance', 'https://swap.taalswap.finance', 'https://taalswap.info'];
+const validOrigins = ['http://localhost:3000'];
 let corsOptions = {
   origin: verifyOrigin,
   credentials: true,
@@ -46,10 +45,8 @@ let corsOptions = {
 app.proxy = true;
 app.use(cors(corsOptions));
 
-router.use('/cypress/api', api.routes());
-router.use('/baobab/api', api.routes());
-router.use('/bridge/api', bridge.routes());
-router.use('/bridge/beta/api', bridge.routes());
+router.use('/market/api', api.routes());
+router.use('/market/beta/api', api.routes());
 
 app.use(morgan('combined', { stream }));
 
