@@ -1,0 +1,8 @@
+{
+  "host"     : "133.186.223.28",
+  "user"     : "root",
+  "password" : "xkftmdhkq1!",
+  "port"     : 3306,
+  "database" : "klaytn",
+  "connectionLimit": 30
+}

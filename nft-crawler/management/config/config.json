@@ -1,0 +1,36 @@
+{
+  "development": {
+    "username": "root",
+    "password": "xkftmdhkq1!",
+    "database": "bridgeBeta",
+    "host": "133.186.223.28",
+    "dialect": "mysql",
+    "timezone": "asia/seoul",
+    "dialectOptions": {
+      "timezone": "local"
+    },
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "production": {
+    "username": "root",
+    "password": "xkftmdhkq1!",
+    "database": "bridgeBeta",
+    "host": "133.186.223.28",
+    "dialect": "mysql",
+    "timezone": "asia/seoul",
+    "dialectOptions": {
+      "timezone": "local"
+    },
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  }
+}

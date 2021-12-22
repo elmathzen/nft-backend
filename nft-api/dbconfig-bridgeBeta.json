@@ -1,0 +1,9 @@
+{
+  "host"     : "133.186.223.28",
+  "user"     : "root",
+  "password" : "xkftmdhkq1!",
+  "port"     : 3306,
+  "database" : "bridgeBeta",
+  "timezone": "UTC+9",
+  "connectionLimit": 30
+}

@@ -1,0 +1,40 @@
+{
+  "name": "nft-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "bcrypt": "^4.0.1",
+    "bignumber.js": "^9.0.1",
+    "commander": "2",
+    "date-utils": "^1.2.21",
+    "dayjs": "^1.10.6",
+    "dotenv": "^8.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "esm": "^3.2.25",
+    "fs": "^0.0.1-security",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-morgan": "^1.0.1",
+    "koa-mysql": "^1.0.3",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^5.22.3",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
+  },
+  "scripts": {
+    "start": "node -r esm bin/koa-cluster src",
+    "start:dev": "nodemon --watch src/ -r esm src/index.js"
+  }
+}
