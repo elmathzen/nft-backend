@@ -1,6 +1,5 @@
 import BigNumber from "bignumber.js";
 import Web3 from "web3";
-import {fetchTokenDecimals} from "./erc20";
 
 const ZERO_BI = Web3.utils.toNumber(0);
 export function convertTokenToDecimal(tokenAmount, exchangeDecimals) {
