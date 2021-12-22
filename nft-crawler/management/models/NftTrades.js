@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 module.exports = function(sequelize, DataTypes) {
   const NftTrades = sequelize.define('NftTrades', {
     id: {
@@ -51,11 +52,7 @@ module.exports = function(sequelize, DataTypes) {
   NftTrades.findByTxHash = async function (txHash) {
     return await this.findOne({
       where: {
-        $or: [
-          { txHash1: txHash },
-          { txHash2: txHash },
-          { txHash3: txHash },
-        ]
+        [Op.or]: [{txHash1: txHash}, {txHash2: txHash}, {txHash3: txHash}]
       }
     });
   };
