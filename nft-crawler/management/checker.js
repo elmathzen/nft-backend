@@ -1,6 +1,5 @@
 import path from 'path';
-import {checkKlaytnBridge} from "./klaytn2";
-import {checkEthBridge} from "./ethereum2";
+import {checkKlaytnMarket} from "./klaytn";
 
 process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 if (process.env.NODE_ENV === 'production') {
@@ -10,11 +9,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 function main() {
-    console.log('checker start.');
-    checkKlaytnBridge();
-    checkEthBridge();
+    console.log('market checker start.');
+    checkKlaytnMarket();
     // setInterval(async () => {
-    //     checkKlaytnBridge();
+    //     checkKlaytnMarket();
     // }, 60000);
 }
 

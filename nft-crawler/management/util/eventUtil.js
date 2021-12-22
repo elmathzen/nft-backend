@@ -2,62 +2,43 @@ import {getFormattedAmount} from "./utils";
 
 const models = require('../models');
 
-export const createHistory = async function (event, isEth) {
-    console.log('=====', event);
+export const createTrade = async function (event) {
+    console.log('add trade =====>', event);
     // create send history
-    let history = new models.SendHistory();
-    history.txHash = event.transactionHash;
-    history.blockNumber = event.blockNumber;
-    history.from = event.returnValues.to;
-    history.to = event.address;
-    // history.amount = receipt.
-    if (isEth) {
-        history.fromChain = 'ETH';
-        history.toChain = 'Klaytn';
-    } else {
-        history.fromChain = 'Klaytn';
-        history.toChain = 'ETH';
-    }
-    history.token = event.returnValues.token;
-    history.amount = event.returnValues.amount;
-    history.formattedAmount = await getFormattedAmount(history.token, history.amount, isEth);
-    history.status = false;
+    let trade = new models.NftTrades();
+    trade.nft = '0x977cc5eaa3adC6225d2cB9cb04c68dda6219BD54';
+    trade.tokenId = event.returnValues.tokenId;
+    trade.seller = event.returnValues.seller;
+    trade.price = await getFormattedAmount(event.returnValues.price);
+    trade.onSale = true;
+    trade.txHash1 = event.transactionHash;
 
-    history = await history.save();
-    return history;
+    trade = await trade.save();
+    return trade;
 }
 
-export const update = async function (event, isETH) {
-    const history = await models.SendHistory.findByTxHash(event.returnValues.txHash);
-    console.log('update event =====>', history, event.returnValues.txHash);
-    if (history) {
-        history.xTxHash = event.transactionHash;
-        history.xFrom = event.address;
-        history.xTo = event.returnValues.to;
-        history.xToken = event.returnValues.token;
-        history.xAmount = event.returnValues.amountOut;
-        history.formattedXAmount = await getFormattedAmount(history.xToken, history.xAmount, isETH);
-        history.status = true;
+export const updateTrade = async function (event) {
+    const trade = await models.NftTrades.findToken('0x977cc5eaa3adC6225d2cB9cb04c68dda6219BD54', event.returnValues.tokenId);
+    console.log('update trade =====>', trade);
+    if (trade) {
+        trade.nft = '0x977cc5eaa3adC6225d2cB9cb04c68dda6219BD54';
+        trade.tokenId = event.returnValues.tokenId;
+        trade.seller = event.returnValues.seller;
+        trade.price = await getFormattedAmount(event.returnValues.price);
+        trade.buyer = event.returnValues.buyer;
+        trade.onSale = false;
+        trade.txHash2 = event.transactionHash;
 
-        await history.save();
+        await trade.save();
     }
 }
 
-export const createError = async function (event, err, isEth) {
-    const error = new models.Error();
-    error.txHash = event.transactionHash;
-    error.blockNumber = event.blockNumber;
-    if (err.receipt) {
-        error.xTxHash = err.receipt.transactionHash;
+export const deleteTrade = async function (event) {
+    const trade = await models.NftTrades.findToken('0x977cc5eaa3adC6225d2cB9cb04c68dda6219BD54', event.returnValues.tokenId);
+    console.log('delete event =====>', trade);
+    if (trade) {
+        trade.onSale = false;
+        trade.txHash3 = event.transactionHash;
+        await trade.save();
     }
-    if (isEth) {
-        error.fromChain = 'ETH';
-        error.toChain = 'Klaytn';
-    } else {
-        error.fromChain = 'Klaytn';
-        error.toChain = 'ETH';
-    }
-    error.message = err.message;
-    error.toAddress = event.returnValues.to;
-    await error.save();
 }

@@ -1,5 +1,5 @@
 const models = require('../models');
-const KLAYTN_CHAIN_NAME = 'baobab';
+const KLAYTN_CHAIN_NAME = 'nft';
 const ETH_CHAIN_NAME = 'ropsten';
 const KLAYTN_LAST_BLOCK = 73325953;
 const ETH_LAST_BLOCK = 11277800;
