@@ -13,6 +13,19 @@ async function getTrades(ctx) {
     return result;
 }
 
+export async function getTradeCount(ctx) {
+    let conn = await getBridgeConn(ctx);
+    let query = `SELECT count(*) as totCnt FROM NftTrades WHERE onSale = true `;
+
+    let [result] = await conn.query(query);
+    console.log(result);
+    conn.release();
+
+    return result[0].totCnt;
+}
+
 export const data = async (ctx) => {
-    ctx.body = { updated_at: new Date().getTime(), data: await getTrades(ctx)};
+    const trades = await getTrades(ctx);
+    const count = await getTradeCount(ctx);
+    ctx.body = { updated_at: new Date().getTime(), totalCount: count, data: trades};
 };
